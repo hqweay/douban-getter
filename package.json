@@ -1,0 +1,12 @@
+{
+  "name": "markall-douban-backup",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "description": "豆瓣数据备份",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "fs-extra": "^8.1.0",
+    "superagent": "^5.1.3"
+  }
+}
