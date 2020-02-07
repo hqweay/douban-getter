@@ -1,5 +1,5 @@
 function resolveDoubanData($, dataType, data) {
-  if (dataType === "watchedMovies" || dataType === "willMovies") {
+  if (dataType === "watchedMovies" || dataType === "willMovies" || dataType === "watchingMovies") {
 
     let items = $('.item');
     if (items.length == 0) {

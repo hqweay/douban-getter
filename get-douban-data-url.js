@@ -11,6 +11,12 @@ function getUrl(dataType, user, page) {
       + '/wish?start='
       + page
       + '&sort=time&rating=all&filter=all&mode=grid'
+  } else if (dataType === "watchingMovies") {
+    return 'https://movie.douban.com/people/'
+      + user
+      + '/do?start='
+      + page
+      + '&sort=time&rating=all&filter=all&mode=grid'
   }
 }
 
