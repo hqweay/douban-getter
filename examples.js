@@ -1,5 +1,5 @@
 
-let createDoubanDataGetter = require('./markall-douban-data-getter-func-creater');
+let createDoubanDataGetter = require('./src/markall-douban-data-getter-func-creater');
 // 存储路径
 const STORE_PATH = 'douban-data-backup/';
 
@@ -25,7 +25,7 @@ let getDoubanPlayingGames = createDoubanDataGetter("playingGames");
 // getDoubanWatchingMovies("hqweay", STORE_PATH);
 
 
-getDoubanReadBooks("hqweay", STORE_PATH);
+// getDoubanReadBooks("hqweay", STORE_PATH);
 // getDoubanWishBooks("hqweay", STORE_PATH);
 // getDoubanReadingBooks("hqweay", STORE_PATH);
 
@@ -35,4 +35,4 @@ getDoubanReadBooks("hqweay", STORE_PATH);
 
 // getDoubanPlayedGames("hqweay", STORE_PATH);
 // getDoubanWishGames("hqweay", STORE_PATH);
-// getDoubanPlayingGames("hqweay", STORE_PATH);
+getDoubanPlayingGames("hqweay", STORE_PATH);

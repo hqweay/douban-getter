@@ -16,7 +16,6 @@ function createDoubanDataGetter(dataType) {
 
   return function getDoubanData(userName, STORE_PATH) {
 
-
     // 书籍初始化
 
     // superagent.get('https://book.douban.com/people/hqweay/')
