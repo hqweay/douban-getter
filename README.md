@@ -32,6 +32,10 @@ let getDoubanWishMovies = createDoubanDataGetter("wishMovies");
 
 可参考目录下的 `douban-data-urls.md`。
 
+# 注意
+
+豆瓣读过的书籍页面直接访问 403,但是先访问用户主页，再访问读过的书籍页面就没问题。对比两个页面的请求头发现相差一个 Cookie 字段，但是——我又没登录。看样子只要有该字段就没问题，服务器没做其它啥验证。
+
 # 进度
 
 现在框架已经搭起来了，接下来就是在 `resolve-douban-data.js` 中解析各个页面了...
@@ -43,10 +47,10 @@ let getDoubanWishMovies = createDoubanDataGetter("wishMovies");
 - [x] 电影—看过
 - [x] 电影—想看
 - [x] 影视—在看
+- [x] 书籍—读过
 
 ## 待施工
 
-- [ ] 书籍—看过
 - [ ] 音乐—听过
 - [ ] 游戏—玩过
 - [ ] ...
