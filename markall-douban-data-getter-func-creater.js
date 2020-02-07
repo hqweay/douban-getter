@@ -6,7 +6,8 @@ const url = require('url');
 
 
 const getUrl = require('./get-douban-data-url');
-const resolveDoubanData = require('./resolve-douban-data-to-json')
+const resolveDoubanData = require('./resolve-douban-data-to-json');
+const saveDoubanData = require('./save-douban-data-to-local');
 
 // dataType : 看过电影、在看影视、想看电影...
 function createDoubanDataGetter(dataType) {
@@ -38,7 +39,7 @@ function createDoubanDataGetter(dataType) {
             var $ = cheerio.load(sres.text);
 
             // 手动停止方便调试
-            if (page >= 30) {
+            if (page >= 15) {
               flag = true;
             }
 
@@ -50,13 +51,16 @@ function createDoubanDataGetter(dataType) {
           clearInterval(s);
           console.log('爬取结束..');
 
-          fs.outputJSONSync(STORE_PATH + userName + '-douban-watched-movie.json', data, err => {
-            console.log(err); // => null
-          })
+          // fs.outputJSONSync(STORE_PATH + userName + '-douban-watched-movie.json', data, err => {
+          //   console.log(err); // => null
+          // })
+          // console.log('写入本地成功');
 
-          console.log('写入本地成功');
+          saveDoubanData(fs, STORE_PATH, userName, data, dataType);
+
           resolve();
         }
+
       }, 1000);// end superagent end
     });// end setInterval
   }

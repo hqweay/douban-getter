@@ -1,5 +1,5 @@
 function resolveDoubanData($, dataType, data) {
-  if (dataType === "watchedMovies") {
+  if (dataType === "watchedMovies" || dataType === "willMovies") {
 
     let items = $('.item');
     if (items.length == 0) {
@@ -44,16 +44,7 @@ function resolveDoubanData($, dataType, data) {
       item['comment'] = comment.replace(/\s/g, '') // replace("\n", "").replace(" ", "").replace('"', '\'')
       item['oldTags'] = tags
 
-
-      // console.log("试试")
-
-      // let resolver = getResolver(dataType);
-      // item = resolver(($element));
-
       data.push(item);
-
-
-
 
       return data;
     })
