@@ -11,10 +11,14 @@ const saveDoubanData = require('./save-douban-data-to-local');
 const userAgents = require('./config/userAgents')
 const cookies = require('./config/cookies')
 
+// 配置
+const sleepTimer = 1500;
+
+
 // dataType : 看过电影、在看影视、想看电影...
 function createDoubanDataGetter(dataType) {
 
-  return function getDoubanData(userName, STORE_PATH) {
+  return function getDoubanData(userName, STORE_PATH, endItemsCount = 999999, sleepTimer = 1500) {
 
     // 书籍初始化
 
@@ -47,13 +51,13 @@ function createDoubanDataGetter(dataType) {
           .end(function (err, sres) {
 
             if (err) {
-              console.log('请求页面信息出错 ' + err);
+              console.log('请求页面信息出错： ' + err);
             }
 
             var $ = cheerio.load(sres.text);
 
             // 手动停止方便调试
-            if (page >= 15) {
+            if (page >= endItemsCount - 15) {
               flag = true;
             }
 
@@ -77,7 +81,7 @@ function createDoubanDataGetter(dataType) {
           resolve();
         }
 
-      }, 2000);// end superagent end
+      }, sleepTimer);// end superagent end
     });// end setInterval
   }
 }

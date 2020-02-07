@@ -32,7 +32,20 @@
    getDoubanWatchedMovies(user, STORE_PATH);
    ```
 
-## 可以使用的参数
+3. Getter 的可选参数
+
+   ```javascript
+   getDoubanWatchedMovies(userName, STORE_PATH, endItemsCount = 999999, sleepTimer = 1500) 
+   ```
+
+| 参数          | 说明                                                         |
+| ------------- | ------------------------------------------------------------ |
+| userName      | 豆瓣帐号                                                     |
+| STORE_PATH    | 存储文件夹路径                                               |
+| endItemsCount | 爬取条目的数目（因为条目页面是每页 15 条数据，所以爬取数目也只能以 15 的倍数控制...）默认为一个极大值 999999，表示爬取所有数据。 |
+| sleepTimer    | 爬取数据的时间间隔（不建议修改，过快会被限制访问...）默认为 1500（ms） |
+
+## createDoubanDataGetter 可以使用的参数
 
 ```javascript
 let getDoubanWatchedMovies = createDoubanDataGetter("watchedMovies");
