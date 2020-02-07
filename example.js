@@ -5,9 +5,11 @@ const STORE_PATH = 'douban-data-backup/';
 
 let getDoubanWatchedMovies = createDoubanDataGetter("watchedMovies");
 let getDoubanWillMovies = createDoubanDataGetter("willMovies");
-let getDoubanwatchingMovies = createDoubanDataGetter("watchingMovies");
+let getDoubanWatchingMovies = createDoubanDataGetter("watchingMovies");
 
+let getDoubanReadBooks = createDoubanDataGetter("readBooks");
 
 // getDoubanWatchedMovies("hqweay", STORE_PATH);
 // getDoubanWillMovies("hqweay", STORE_PATH);
-getDoubanwatchingMovies("hqweay", STORE_PATH);
+getDoubanReadBooks("hqweay", STORE_PATH);
+// getDoubanWatchingMovies("hqweay", STORE_PATH);
