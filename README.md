@@ -17,13 +17,16 @@ let getDoubanWatchedMovies = createDoubanDataGetter("watchedMovies");
 let getDoubanWishMovies = createDoubanDataGetter("wishMovies");
 ```
 
-`markall-douban-data-getter-func-creater.js` 依赖 `get-douban-data-url.js` 与 `resolve-douban-data.js`。
+`markall-douban-data-getter-func-creater.js` 依赖 `get-douban-data-url.js` 、 `resolve-douban-data.js` 与 `save-douban-data-to-local.js`。
 
 `get-douban-data-url.js`：通过参数获取豆瓣信息页面的 `url`。
 
 `resolve-douban-data.js`：解析对应豆瓣信息页面的标签获取数据。
 
+`save-douban-data-to.js`：备份数据的存储
+
 **注意**：现在文件夹下的 resolve 文件是 `resolve-douban-data-to-json.js`，表示获取信息后以 JSON 格式存储。
+同理，save 文件是 `save-douban-data-to-local.js`，表示存储至本地。
 
 ## 豆瓣信息页面的 URL 
 
@@ -38,10 +41,10 @@ let getDoubanWishMovies = createDoubanDataGetter("wishMovies");
 ## 已完成
 
 - [x] 电影—看过
+- [x] 电影—想看
 
 ## 待施工
 
-- [ ] 电影—想看
 - [ ] 书籍—看过
 - [ ] 音乐—听过
 - [ ] 游戏—玩过
