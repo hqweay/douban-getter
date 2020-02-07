@@ -1,9 +1,9 @@
 function resolveDoubanData($, dataType, data) {
-  if (dataType === "watchedMovies" || dataType === "willMovies" || dataType === "watchingMovies") {
+  if (dataType === "watchedMovies" || dataType === "wishMovies" || dataType === "watchingMovies") {
 
     return resolveMovies($, data);
 
-  } else if (dataType === "readBooks") {
+  } else if (dataType === "readBooks" || dataType === "wishBooks") {
     return resolveBooks($, data);
   }
 }
@@ -79,7 +79,7 @@ function resolveBooks($, data) {
     let pub = $element.find('.info .pub').text();
     // 2020-02-05 读过
     let dateAndStatus = $element.find('.info .short-note .date').text();
-    let date = dateAndStatus.search(/^\d{4}(-)(1[0-2]|0?\d)\1([0-2]\d|\d|30|31)$/);
+    let date = dateAndStatus.replace(' 读过', '').trim(); // 去掉前缀
 
     let tags = '';
     if ($element.find('.info .tags').length != 0) {

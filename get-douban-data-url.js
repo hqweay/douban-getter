@@ -5,7 +5,7 @@ function getUrl(dataType, user, page) {
       + '/collect?start='
       + page
       + '&sort=time&rating=all&filter=all&mode=grid';
-  } else if (dataType === "willMovies") {
+  } else if (dataType === "wishMovies") {
     return 'https://movie.douban.com/people/'
       + user
       + '/wish?start='
@@ -21,6 +21,12 @@ function getUrl(dataType, user, page) {
     return 'https://book.douban.com/people/'
       + user
       + '/collect?start='
+      + page
+      + '&sort=time&rating=all&filter=all&mode=grid'
+  } else if (dataType === "wishBooks") {
+    return 'https://book.douban.com/people/'
+      + user
+      + '/wish?start='
       + page
       + '&sort=time&rating=all&filter=all&mode=grid'
   }
