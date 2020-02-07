@@ -22,7 +22,7 @@
    let createDoubanDataGetter = require('markall-douban-backup');
    
    // 存储路径
-   const STORE_PATH = "douban-data-backup/";
+   const STORE_PATH = "douban-data-backup";
    // 豆瓣帐号
    const user = "hqweay";
    
@@ -125,6 +125,14 @@ let getDoubanWishMovies = createDoubanDataGetter("wishMovies");
 ## 备份数据样例
 
 参考 `/douban-data-backup` 下的文件。
+
+# 开发
+
+您可以创建自己的 `save-douban-data-to-cloud.js` 等类似文件编写上传到存储服务的逻辑。
+
+也可以创建自己的 `resolve-douban-data-to-csv.js` 解析数据为 csv 格式保存...
+
+也许我后面会写...
 
 # 其它
 
