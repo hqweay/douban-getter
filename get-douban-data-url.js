@@ -35,6 +35,24 @@ function getUrl(dataType, user, page) {
       + '/do?start='
       + page
       + '&sort=time&rating=all&filter=all&mode=grid'
+  } else if (dataType === "listenedMusics") {
+    return 'https://music.douban.com/people/'
+      + user
+      + '/collect?start='
+      + page
+      + '&sort=time&rating=all&filter=all&mode=grid'
+  } else if (dataType === "wishMusics") {
+    return 'https://music.douban.com/people/'
+      + user
+      + '/wish?start='
+      + page
+      + '&sort=time&rating=all&filter=all&mode=grid'
+  } else if (dataType === "listeningMusics") {
+    return 'https://music.douban.com/people/'
+      + user
+      + '/do?start='
+      + page
+      + '&sort=time&rating=all&filter=all&mode=grid'
   }
 }
 

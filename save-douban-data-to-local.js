@@ -23,6 +23,18 @@ function saveDoubanData(fs, STORE_PATH, userName, data, dataType) {
     fs.outputJSONSync(STORE_PATH + '/' + userName + '/book/' + 'douban-reading-books.json', data, err => {
       console.log(err); // => null
     })
+  } else if (dataType === "listenedMusics") {
+    fs.outputJSONSync(STORE_PATH + '/' + userName + '/music/' + 'douban-listened-musics.json', data, err => {
+      console.log(err); // => null
+    })
+  } else if (dataType === "wishMusics") {
+    fs.outputJSONSync(STORE_PATH + '/' + userName + '/music/' + 'douban-wish-musics.json', data, err => {
+      console.log(err); // => null
+    })
+  } else if (dataType === "listeningMusics") {
+    fs.outputJSONSync(STORE_PATH + '/' + userName + '/music/' + 'douban-listening-musics.json', data, err => {
+      console.log(err); // => null
+    })
   }
   console.log(dataType + ' 写入本地成功');
 }
