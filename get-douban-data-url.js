@@ -17,6 +17,12 @@ function getUrl(dataType, user, page) {
       + '/do?start='
       + page
       + '&sort=time&rating=all&filter=all&mode=grid'
+  } else if (dataType === "readBooks") {
+    return 'https://book.douban.com/people/'
+      + user
+      + '/collect?start='
+      + page
+      + '&sort=time&rating=all&filter=all&mode=grid'
   }
 }
 

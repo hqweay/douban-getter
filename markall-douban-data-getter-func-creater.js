@@ -29,22 +29,23 @@ function createDoubanDataGetter(dataType) {
 
         console.log('正在获取第 ' + page + ' 条数据...');
 
-        superagent.get(cnodeUrl)
-          .end(function (err, sres) {
+        superagent.get(cnodeUrl).end(function (err, sres) {
 
-            if (err) {
-              console.log(err);
-            }
+          if (err) {
+            console.log(err);
+          }
 
-            var $ = cheerio.load(sres.text);
+          var $ = cheerio.load(sres.text);
 
-            // 手动停止方便调试
-            if (page >= 15) {
-              flag = true;
-            }
+          // 手动停止方便调试
+          // if (page >= 15) {
+          //   flag = true;
+          // }
 
-            resolveDoubanData($, dataType, data)
-          });// end superagent.end()
+          if (resolveDoubanData($, dataType, data) === true) {
+            flag = true;
+          }
+        });// end superagent.end()
 
 
         if (flag === true) {
@@ -61,7 +62,7 @@ function createDoubanDataGetter(dataType) {
           resolve();
         }
 
-      }, 1000);// end superagent end
+      }, 1500);// end superagent end
     });// end setInterval
   }
 }
