@@ -56,9 +56,14 @@ let getDoubanWishMovies = createDoubanDataGetter("wishMovies");
 - [x] 书籍—想读
 - [x] 书籍—在读
 
+### 音乐
+
+- [x] 音乐—听过
+- [x] 音乐—想听
+- [x] 音乐—在听
+
 ## 待施工
 
-- [ ] 音乐—听过
 - [ ] 游戏—玩过
 - [ ] ...
 
