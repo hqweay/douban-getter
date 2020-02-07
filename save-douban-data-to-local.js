@@ -19,6 +19,10 @@ function saveDoubanData(fs, STORE_PATH, userName, data, dataType) {
     fs.outputJSONSync(STORE_PATH + '/' + userName + '/book/' + 'douban-wish-books.json', data, err => {
       console.log(err); // => null
     })
+  } else if (dataType === "readingBooks") {
+    fs.outputJSONSync(STORE_PATH + '/' + userName + '/book/' + 'douban-reading-books.json', data, err => {
+      console.log(err); // => null
+    })
   }
   console.log(dataType + ' 写入本地成功');
 }

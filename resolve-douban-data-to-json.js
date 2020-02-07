@@ -3,7 +3,7 @@ function resolveDoubanData($, dataType, data) {
 
     return resolveMovies($, data);
 
-  } else if (dataType === "readBooks" || dataType === "wishBooks") {
+  } else if (dataType === "readBooks" || dataType === "wishBooks" || dataType === "readingBooks") {
     return resolveBooks($, data);
   }
 }

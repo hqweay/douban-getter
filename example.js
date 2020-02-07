@@ -9,9 +9,11 @@ let getDoubanWatchingMovies = createDoubanDataGetter("watchingMovies");
 
 let getDoubanReadBooks = createDoubanDataGetter("readBooks");
 let getDoubanWishBooks = createDoubanDataGetter("wishBooks");
+let getDoubanReadingBooks = createDoubanDataGetter("readingBooks");
 
 // getDoubanWatchedMovies("hqweay", STORE_PATH);
-getDoubanWishMovies("hqweay", STORE_PATH);
+// getDoubanWishMovies("hqweay", STORE_PATH);
 // getDoubanReadBooks("hqweay", STORE_PATH);
 // getDoubanWatchingMovies("hqweay", STORE_PATH);
 // getDoubanWishBooks("hqweay", STORE_PATH);
+getDoubanReadingBooks("hqweay", STORE_PATH);
