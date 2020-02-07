@@ -5,6 +5,8 @@ function resolveDoubanData($, dataType, data) {
     return resolveBooks($, data);
   } else if (dataType === "listenedMusics" || dataType === "wishMusics" || dataType === "listeningdMusics") {
     return resolveMusics($, data);
+  } else if (dataType === "playedGames" || dataType === "wishGames" || dataType === "playingGames") {
+    return resolveGames($, data);
   }
 }
 
@@ -43,7 +45,7 @@ function resolveMovies($, data) {
     tags = tags.replace('标签: ', ''); // 去掉前缀
     tags = tags.split(' '); // 按空格转为数组
 
-    if (tags.length == 1) {
+    if (tags.length == 1 && tags[0] === "") {
       tags.splice(0, 1);
     }
 
@@ -88,10 +90,10 @@ function resolveBooks($, data) {
     // tags 处理
     tags = tags.replace('标签: ', ''); // 去掉前缀
     tags = tags.split(' '); // 按空格转为数组
-    if (tags.length == 1) {
+
+    if (tags.length == 1 && tags[0] === "") {
       tags.splice(0, 1);
     }
-
 
     // 评论
     let comment = '';
@@ -142,7 +144,8 @@ function resolveMusics($, data) {
     // tags 处理
     tags = tags.replace('标签: ', ''); // 去掉前缀
     tags = tags.split(' '); // 按空格转为数组
-    if (tags.length == 1) {
+
+    if (tags.length == 1 && tags[0] === "") {
       tags.splice(0, 1);
     }
 
@@ -163,9 +166,62 @@ function resolveMusics($, data) {
     item['comment'] = comment.replace(/\s/g, '') // replace("\n", "").replace(" ", "").replace('"', '\'')
     item['oldTags'] = tags
 
+
+    console.log(item['oldTags'])
+
     data.push(item);
   })
 }
 
+function resolveGames($, data) {
+  let games = $('.common-item');
+
+  if (games.length == 0) {
+    return true;
+  }
+
+
+  games.each(function (idx, element) {
+
+    let item = {};
+    var $element = $(element);
+
+    let url = $element.find('.pic a').attr('href');
+    let pic = $element.find('.pic img').attr('src');
+    let title = $element.find('.content .title a').text().trim();
+    // 创作者、时间...
+    let intro = $element.find('.content .desc').text().trim();
+
+
+    let date = $element.find('.content .rating-info .date').text();
+
+    let tags = '';
+    if ($element.find('.content .rating-info .tags').length != 0) {
+      tags = $element.find('.content .rating-info .tags').text();
+    }
+    // tags 处理
+    tags = tags.replace('标签: ', '').trim(); // 去掉前缀
+    tags = tags.split(' '); // 按空格转为数组
+
+    if (tags.length == 1 && tags[0] === "") {
+      tags.splice(0, 1);
+    }
+
+    // 评论
+    let comment = '';
+    comment = $element.find('.content').children().eq(2).text();
+
+
+    item['title'] = title.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
+    item['url'] = url.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
+    item['pic'] = pic.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
+    item['intro'] = intro.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
+    item['date'] = date
+    item['comment'] = comment.replace(/\s/g, '') // replace("\n", "").replace(" ", "").replace('"', '\'')
+    item['oldTags'] = tags
+
+    data.push(item);
+  })
+}
 
 module.exports = resolveDoubanData;

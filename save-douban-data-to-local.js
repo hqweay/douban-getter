@@ -35,6 +35,18 @@ function saveDoubanData(fs, STORE_PATH, userName, data, dataType) {
     fs.outputJSONSync(STORE_PATH + '/' + userName + '/music/' + 'douban-listening-musics.json', data, err => {
       console.log(err); // => null
     })
+  } else if (dataType === "playedGames") {
+    fs.outputJSONSync(STORE_PATH + '/' + userName + '/game/' + 'douban-played-games.json', data, err => {
+      console.log(err); // => null
+    })
+  } else if (dataType === "wishGames") {
+    fs.outputJSONSync(STORE_PATH + '/' + userName + '/game/' + 'douban-wish-games.json', data, err => {
+      console.log(err); // => null
+    })
+  } else if (dataType === "playingGames") {
+    fs.outputJSONSync(STORE_PATH + '/' + userName + '/game/' + 'douban-palying-games.json', data, err => {
+      console.log(err); // => null
+    })
   }
   console.log(dataType + ' 写入本地成功');
 }

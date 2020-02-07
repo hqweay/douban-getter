@@ -53,6 +53,21 @@ function getUrl(dataType, user, page) {
       + '/do?start='
       + page
       + '&sort=time&rating=all&filter=all&mode=grid'
+  } else if (dataType === "playedGames") {
+    return 'https://www.douban.com/people/'
+      + user
+      + '/games?action=collect&start='
+      + page
+  } else if (dataType === "wishGames") {
+    return 'https://www.douban.com/people/'
+      + user
+      + '/games?action=wish&start='
+      + page
+  } else if (dataType === "playingGames") {
+    return 'https://www.douban.com/people/'
+      + user
+      + '/games?action=do&start='
+      + page
   }
 }
 

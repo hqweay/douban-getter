@@ -16,6 +16,10 @@ let getDoubanListenedMusics = createDoubanDataGetter("listenedMusics");
 let getDoubanWishMusics = createDoubanDataGetter("wishMusics");
 let getDoubanListeningMusics = createDoubanDataGetter("listeningMusics");
 
+let getDoubanPlayedGames = createDoubanDataGetter("playedGames");
+let getDoubanWishGames = createDoubanDataGetter("wishGames");
+let getDoubanPlayingGames = createDoubanDataGetter("playingGames");
+
 // getDoubanWatchedMovies("hqweay", STORE_PATH);
 // getDoubanWishMovies("hqweay", STORE_PATH);
 // getDoubanWatchingMovies("hqweay", STORE_PATH);
@@ -28,3 +32,7 @@ getDoubanReadBooks("hqweay", STORE_PATH);
 // getDoubanListenedMusics("hqweay", STORE_PATH);
 // getDoubanWishMusics("hqweay", STORE_PATH);
 // getDoubanListeningMusics("hqweay", STORE_PATH);
+
+// getDoubanPlayedGames("hqweay", STORE_PATH);
+// getDoubanWishGames("hqweay", STORE_PATH);
+// getDoubanPlayingGames("hqweay", STORE_PATH);
