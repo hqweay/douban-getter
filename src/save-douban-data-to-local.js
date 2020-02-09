@@ -1,4 +1,6 @@
-function saveDoubanData(fs, STORE_PATH, userName, data, dataType) {
+const fs = require('fs-extra');
+
+function saveDoubanData(STORE_PATH, data, dataType, userName = "my") {
   if (dataType === "watchedMovies") {
     fs.outputJSONSync(STORE_PATH + '/' + userName + '/movie/' + 'douban-watched-movie.json', data, err => {
       console.log(err); // => null
