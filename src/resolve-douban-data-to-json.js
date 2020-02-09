@@ -166,9 +166,6 @@ function resolveMusics($, data) {
     item['comment'] = comment.replace(/\s/g, '') // replace("\n", "").replace(" ", "").replace('"', '\'')
     item['oldTags'] = tags
 
-
-    console.log(item['oldTags'])
-
     data.push(item);
   })
 }
