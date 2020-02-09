@@ -162,3 +162,7 @@ let getDoubanWishMovies = createDoubanDataGetter("wishMovies");
 # 一些问题
 
 豆瓣读过的书籍页面直接访问 403，但是先访问用户主页，再访问读过的书籍页面就没问题。对比两个页面的请求头发现相差一个 Cookie 字段，但是——我又没登录。看样子只要有该字段就没问题，服务器没做其它啥验证。
+
+# 关联
+
+[hexo-douban-getter](https://github.com/hqweay/hexo-douban-getter) ：基于本项目写的展示豆瓣标记条目的 Hexo 插件。
