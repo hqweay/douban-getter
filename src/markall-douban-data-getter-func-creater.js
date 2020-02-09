@@ -21,15 +21,17 @@ function createDoubanDataGetter(dataType) {
       let page = pageStart * 15 - 30;
       let flag = false;
 
-      console.log('开始爬取...');
+
+      console.log(dataType + ' 开始爬取...');
+
 
 
       var s = setInterval(function () {
         page += 15;
         var cnodeUrl = getUrl(dataType, user, page);
-
-        console.log('正在获取第 ' + (page + 15) / 15 + ' 页数据...');
-
+        if (flag === false) {
+          console.log(dataType + ' 正在获取第 ' + (page + 15) / 15 + ' 页数据...');
+        }
         let userAgent = userAgents[parseInt(Math.random() * userAgents.length)];
         let cookie = cookies[parseInt(Math.random() * cookies.length)];
 
