@@ -41,7 +41,7 @@ let getDoubanPlayingGames = createDoubanDataGetter("playingGames");
 
 const saveDoubanData = require('./src/save-douban-data-to-local');
 
-getDoubanWatchedMovies(userName, 15).then(function (data) {
+getDoubanWatchedMovies(userName, pageStart = 1, pageEnd = 2).then(function (data) {
   console.log(data);
   saveDoubanData(STORE_PATH, data, "watchedMovies", userName);
 })
