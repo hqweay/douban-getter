@@ -49,13 +49,13 @@ function resolveMovies($, data) {
       tags.splice(0, 1);
     }
 
-    item['name'] = title.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
+    item['title'] = title.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
     item['url'] = url.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
     item['pic'] = pic.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
     item['intro'] = intro.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
     item['date'] = date
     item['comment'] = comment.replace(/\s/g, '') // replace("\n", "").replace(" ", "").replace('"', '\'')
-    item['oldTags'] = tags
+    item['tags'] = tags
 
     data.push(item);
   })
@@ -109,7 +109,7 @@ function resolveBooks($, data) {
     item['pub'] = pub.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
     item['date'] = date
     item['comment'] = comment.replace(/\s/g, '') // replace("\n", "").replace(" ", "").replace('"', '\'')
-    item['oldTags'] = tags
+    item['tags'] = tags
 
     data.push(item);
   })
@@ -164,7 +164,7 @@ function resolveMusics($, data) {
     item['intro'] = intro.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
     item['date'] = date
     item['comment'] = comment.replace(/\s/g, '') // replace("\n", "").replace(" ", "").replace('"', '\'')
-    item['oldTags'] = tags
+    item['tags'] = tags
 
     data.push(item);
   })
@@ -215,7 +215,7 @@ function resolveGames($, data) {
     item['intro'] = intro.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
     item['date'] = date
     item['comment'] = comment.replace(/\s/g, '') // replace("\n", "").replace(" ", "").replace('"', '\'')
-    item['oldTags'] = tags
+    item['tags'] = tags
 
     data.push(item);
   })
