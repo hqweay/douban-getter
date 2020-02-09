@@ -1,6 +1,8 @@
 {
   "name": "markall-douban-backup",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "author": "hqweay",
+  "repository": "https://github.com/hqweay/markall-douban-getter.git",
   "main": "index.js",
   "license": "MIT",
   "description": "豆瓣数据备份",
