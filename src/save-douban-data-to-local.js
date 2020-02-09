@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 
-function saveDoubanData(data, STORE_PATH, fileName = "my-info") {
+function saveDoubanData(data, STORE_PATH = "douban-data-backup", fileName = "my-info") {
   fs.outputJSONSync(STORE_PATH + '/' + fileName + ".json", data, err => {
     console.log(err); // => null
   })
