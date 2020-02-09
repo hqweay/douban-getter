@@ -2,13 +2,13 @@
 
 提供一个工厂方法，创建用户在豆瓣标记为电影、书籍、音乐、游戏对应的看过、在看、想看等条目的 Getter 方法。
 
-# 豆瓣标记数据备份
+提供一个 Save 方法，将 Getter 获取的数据保存至本地。
 
-我的目标是备份豆瓣用户在豆瓣上的标记数据，而不是爬取豆瓣数据。所以获取信息的页面，我选取的是 **豆瓣标记信息列表** 的页面 **而不是条目详情页面**。
+> 我的目标是备份豆瓣用户在豆瓣上的标记数据，而不是爬取豆瓣数据。所以获取信息的页面，我选取的是 **豆瓣标记信息列表** 的页面 **而不是条目详情页面**。
+>
+> 如该页面：[下一餐有折耳根想看的电影](https://movie.douban.com/people/hqweay/wish?start=15&sort=time&rating=all&filter=all&mode=grid)
 
-如该页面：[下一餐有折耳根想看的电影](https://movie.douban.com/people/hqweay/wish?start=15&sort=time&rating=all&filter=all&mode=grid)
-
-## 使用
+# 使用
 
 1. 引入包
 
@@ -16,83 +16,102 @@
    yarn add https://github.com/hqweay/markall-douban-backup.git
    ```
 
-2. 使用
+2. 使用样例
 
    ```javascript
-   let createDoubanDataGetter = require('markall-douban-backup');
+   let { createDoubanDataGetter, saveDoubanData, DoubanTypeEnum } = require('markall-douban-backup');
    
    // 存储路径
    const STORE_PATH = "douban-data-backup";
    // 豆瓣帐号
-   const user = "hqweay";
+   const userName = "hqweay";
    
-   let getDoubanWatchedMovies = createDoubanDataGetter("watchedMovies");
+   let getDoubanWatchedMovies = createDoubanDataGetter(DoubanTypeEnum.watchedMovies);
    
-   // 获取用户在豆瓣标记为看过的电影条目
-   getDoubanWatchedMovies(user, STORE_PATH);
+   // 获取用户在豆瓣标记为想看的电影条目
+   getDoubanWatchedMovies(userName, pageStart = 1, pageEnd = 2, sleepTimer = 1500).then(function (data) {
+     // 数据、路径、文件名
+     saveDoubanData(data, STORE_PATH + "/hqweay/movie/", "watchedMovies");
+   })
    ```
 
-3. Getter 的可选参数
+# 方法说明
 
-   ```javascript
-   getDoubanWatchedMovies(userName, STORE_PATH, endItemsCount = 999999, sleepTimer = 1500) 
-   ```
+## createDoubanDataGetter
 
-| 参数          | 说明                                                         |
-| ------------- | ------------------------------------------------------------ |
-| userName      | 豆瓣帐号                                                     |
-| STORE_PATH    | 存储文件夹路径                                               |
-| endItemsCount | 爬取条目的数目（因为条目页面是每页 15 条数据，所以爬取数目也只能以 15 的倍数控制...）默认为一个极大值 999999，表示爬取所有数据。 |
-| sleepTimer    | 爬取数据的时间间隔（不建议修改，过快会被限制访问...）默认为 1500（ms） |
+提供一个工厂方法，创建用户在豆瓣标记为电影、书籍、音乐、游戏对应的看过、在看、想看等条目的 Getter 方法。
 
-## createDoubanDataGetter 可以使用的参数
+### 可选参数
 
 ```javascript
-let getDoubanWatchedMovies = createDoubanDataGetter("watchedMovies");
-let getDoubanWishMovies = createDoubanDataGetter("wishMovies");
-let getDoubanWatchingMovies = createDoubanDataGetter("watchingMovies");
-
-let getDoubanReadBooks = createDoubanDataGetter("readBooks");
-let getDoubanWishBooks = createDoubanDataGetter("wishBooks");
-let getDoubanReadingBooks = createDoubanDataGetter("readingBooks");
-
-
-let getDoubanListenedMusics = createDoubanDataGetter("listenedMusics");
-let getDoubanWishMusics = createDoubanDataGetter("wishMusics");
-let getDoubanListeningMusics = createDoubanDataGetter("listeningMusics");
-
-let getDoubanPlayedGames = createDoubanDataGetter("playedGames");
-let getDoubanWishGames = createDoubanDataGetter("wishGames");
-let getDoubanPlayingGames = createDoubanDataGetter("playingGames");
+// let getDoubanWatchedMovies = createDoubanDataGetter(DoubanTypeEnum.watchedMovies);
+const DoubanTypeEnum = {
+  "watchedMovies": "watchedMovies",
+  "wishMovies": "wishMovies",
+  "watchingMovies": "watchingMovies",
+  "readBooks": "readBooks",
+  "wishBooks": "wishBooks",
+  "readingBooks": "readingBooks",
+  "listenedMusics": "listenedMusics",
+  "wishMusics": "wishMusics",
+  "listeningMusics": "listeningMusics",
+  "playedGames": "playedGames",
+  "wishGames": "wishGames",
+  "playingGames": "playingGames",
+}
 ```
 
-## 参数对应
+### 参数对应
 
-### 影视
+| 电影 | 书籍 | 音乐 | 游戏 |
+| ---- | ---- | ---- | ---- |
+| 看过 | 读过 | 听过 | 玩过 |
+| 想看 | 想读 | 想听 | 想玩 |
+| 在看 | 在读 | 在听 | 在玩 |
 
-- [x] 电影—看过
-- [x] 电影—想看
-- [x] 影视—在看
+## Getter
 
-### 书籍
+createDoubanDataGetter 的返回值是一个豆瓣标记数据的 Getter 函数，里面是一个 Promise，通过回调方法可以对 Getter 获取的数据进行相应处理。如：
 
-- [x] 书籍—读过
-- [x] 书籍—想读
-- [x] 书籍—在读
+```javascript
+getDoubanWishMovies(userName, pageStart = 1, pageEnd = 2, sleepTimer = 1500).then(function (data) {
+  // 数据、路径、文件名
+  saveDoubanData(data, STORE_PATH + "/hqweay/movie/", "wishMovies");
+})
+```
 
-### 音乐
+### 可选参数
 
-- [x] 音乐—听过
-- [x] 音乐—想听
-- [x] 音乐—在听
+```javascript
+getDoubanWatchedMovies(userName, pageStart = 1, pageEnd = 2, sleepTimer = 1500);
+```
 
-### 游戏
+| 参数       | 说明                                                         |
+| ---------- | ------------------------------------------------------------ |
+| userName   | 豆瓣帐号                                                     |
+| pageStart  | 数据获取开始页（注意：一页 15 条数据）                       |
+| pageEnd    | 数据获取结束页                                               |
+| sleepTimer | 爬取数据的时间间隔（**不建议修改，过快会被限制访问...**）默认为 1500（ms） |
 
-- [x] 游戏—玩过
-- [x] 游戏—想玩
-- [x] 游戏—在玩
+## saveDoubanData
+
+saveDoubanData() 是这个项目核心外的一个方法，用于将 Getter 获取的数据保存至本地。
+
+```javascript
+saveDoubanData(data, STORE_PATH = "douban-data-backup", fileName = "my-info");
+```
+
+### 参数说明
+
+| 参数       | 说明       |
+| ---------- | ---------- |
+| data       | 数据       |
+| STORE_PATH | 存储路径   |
+| fileName   | 保存文件名 |
 
 # 项目说明
+
+把 [MarkAll](https://github.com/hqweay/MarkAll) 里的豆瓣爬虫抽取为插件...
 
 ## 结构
 
@@ -135,8 +154,6 @@ let getDoubanWishMovies = createDoubanDataGetter("wishMovies");
 也许我后面会写...
 
 # 其它
-
-本来目的是想把 [MarkAll](https://github.com/hqweay/MarkAll) 里的豆瓣爬虫抽取为插件...
 
 另外，话说保存数据格式为 `JSON`，其它格式可以使用在线转换工具嘛...
 
