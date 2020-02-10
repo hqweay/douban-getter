@@ -23,10 +23,8 @@ function createDoubanDataGetter(dataType) {
 
 
       console.log(dataType + ' 开始爬取...');
-
-
-
-      var s = setInterval(function () {
+      // let s = setInterval(function () {
+      setInterval(function () {
         page += 15;
         var cnodeUrl = getUrl(dataType, user, page);
         if (flag === false) {
@@ -60,7 +58,9 @@ function createDoubanDataGetter(dataType) {
 
 
         if (flag === true) {
-          clearInterval(s);
+          // clearInterval(s);
+          // 用 this 的话，setInterval(function () {}) 调用时不能用箭头函数哦
+          clearInterval(this);
           console.log('爬取结束..');
           resolve(data);
         }

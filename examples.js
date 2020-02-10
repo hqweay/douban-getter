@@ -30,3 +30,8 @@ getDoubanWishMovies(userName, pageStart = 1, pageEnd = 1, sleepTimer = 1500).the
   // 数据、路径、文件名
   saveDoubanData(data, STORE_PATH + "/hqweay/movie/", "wishMovies");
 })
+
+// getDoubanWishMovies(userName, pageStart = 1, pageEnd = 1, sleepTimer = 1500).then(function (data) {
+
+//   console.log("sssssss");
+// });
