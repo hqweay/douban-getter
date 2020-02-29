@@ -13,13 +13,13 @@
 1. 引入包
 
    ```bash
-   yarn add https://github.com/hqweay/markall-douban-backup.git
+   yarn add https://github.com/hqweay/douban-getter.git
    ```
 
 2. 使用样例
 
    ```javascript
-   let { createDoubanDataGetter, saveDoubanData, DoubanTypeEnum } = require('markall-douban-backup');
+   let { createDoubanDataGetter, saveDoubanData, DoubanTypeEnum } = require('douban-getter');
    
    // 存储路径
    const STORE_PATH = "douban-data-backup";
@@ -117,7 +117,7 @@ saveDoubanData(data, STORE_PATH = "douban-data-backup", fileName = "my-info");
 
 把获取豆瓣数据抽象为三步：获取页面、解析页面、数据存储。
 
-核心是 `markall-douban-data-getter-func-creater.js`，用户可以通过该文件提供的方法创建一个 **获取某项信息的函数。**
+核心是 `douban-data-getter-func-creater.js`，用户可以通过该文件提供的方法创建一个 **获取某项信息的函数。**
 
 如：
 
@@ -126,7 +126,7 @@ let getDoubanWatchedMovies = createDoubanDataGetter("watchedMovies");
 let getDoubanWishMovies = createDoubanDataGetter("wishMovies");
 ```
 
-`markall-douban-data-getter-func-creater.js` 依赖 `get-douban-data-url.js` 、 `resolve-douban-data.js` 与 `save-douban-data-to-local.js`。
+`douban-data-getter-func-creater.js` 依赖 `get-douban-data-url.js` 、 `resolve-douban-data.js` 与 `save-douban-data-to-local.js`。
 
 `get-douban-data-url.js`：通过参数获取豆瓣信息页面的 `url`。
 
