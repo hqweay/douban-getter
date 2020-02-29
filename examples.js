@@ -26,7 +26,7 @@ let getDoubanWishGames = createDoubanDataGetter(DoubanTypeEnum.wishGames);
 let getDoubanPlayingGames = createDoubanDataGetter(DoubanTypeEnum.playingGames);
 
 
-getDoubanWishMovies(userName, pageStart = 1, pageEnd = 1, sleepTimer = 1500).then(function (data) {
+getDoubanWishMovies(userName, pageStart = 1, pageEnd = 2, sleepTimer = 1500).then(function (data) {
   // 数据、路径、文件名
   saveDoubanData(data, STORE_PATH + "/hqweay/movie/", "wishMovies");
 })

@@ -23,13 +23,14 @@ function createDoubanDataGetter(dataType) {
 
 
       console.log(dataType + ' 开始爬取...');
-      // let s = setInterval(function () {
+
       setInterval(function () {
         page += 15;
         var cnodeUrl = getUrl(dataType, user, page);
         if (flag === false) {
-          console.log(dataType + ' 正在获取第 ' + (page + 15) / 15 + ' 页数据...');
+          console.log(dataType + ' 请求第 ' + (page + 15) / 15 + ' 页数据...');
         }
+
         let userAgent = userAgents[parseInt(Math.random() * userAgents.length)];
         let cookie = cookies[parseInt(Math.random() * cookies.length)];
 
@@ -37,32 +38,40 @@ function createDoubanDataGetter(dataType) {
           .set({
             'User-Agent': userAgent,
             'Cookie': cookie
+          }).timeout({
+            response: 10000
           })
-          .end(function (err, sres) {
+          .end(function (err, res) {
 
             if (err) {
-              console.log('请求页面信息出错： ' + err);
+              if (err.timeout) {
+                console.log("请求超时，请检查网络：" + err);
+              } else {
+                console.log('请求页面信息出错： ' + err);
+              }
             }
 
-            var $ = cheerio.load(sres.text);
-
-            // 停止
-            if (page >= pageEnd * 15 - 30) {
-              flag = true;
-            }
-
+            var $ = cheerio.load(res.text);
+            console.log(dataType + ' 解析第 ' + (page + 15) / 15 + ' 页数据...');
             if (resolveDoubanData($, dataType, data) === true) {
+              // 请求页面已无条目数据
               flag = true;
+              resolve(flag);
             }
+
+            if (flag === true || page >= pageEnd * 15 - 15) {
+              // clearInterval(s);
+              // 用 this 的话，setInterval(function () {}) 调用时不能用箭头函数哦
+              // clearInterval(this);
+              console.log('数据获取结束...');
+              resolve(data);
+            }
+
           });// end superagent.end()
 
-
-        if (flag === true) {
-          // clearInterval(s);
-          // 用 this 的话，setInterval(function () {}) 调用时不能用箭头函数哦
+        if (flag === true || page >= pageEnd * 15 - 15) {
           clearInterval(this);
-          console.log('爬取结束..');
-          resolve(data);
+          console.log("正在请求，等待获取数据...");
         }
 
       }, sleepTimer);// end setInterval
