@@ -1,6 +1,6 @@
 {
   "name": "douban-getter",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "hqweay",
   "repository": "https://github.com/hqweay/douban-getter.git",
   "main": "index.js",
