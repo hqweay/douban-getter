@@ -14,7 +14,7 @@
 
    ```bash
    npm i douban-getter
-   yarn add douban-getter
+   # yarn add douban-getter
    # yarn add https://github.com/hqweay/douban-getter.git
    ```
 
