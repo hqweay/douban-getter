@@ -10,6 +10,12 @@
 
 # 使用
 
+## 效果
+
+![](https://raw.githubusercontent.com/hqweay/douban-getter/master/screenshots/example.gif)
+
+## 说明
+
 1. 引入包
 
    ```bash
