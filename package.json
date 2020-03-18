@@ -2,7 +2,7 @@
   "name": "douban-getter",
   "version": "2.0.0",
   "author": "hqweay",
-  "repository": "https://github.com/hqweay/markall-douban-getter.git",
+  "repository": "https://github.com/hqweay/douban-getter.git",
   "main": "index.js",
   "license": "MIT",
   "description": "豆瓣数据备份",
@@ -10,5 +10,9 @@
     "cheerio": "^1.0.0-rc.3",
     "fs-extra": "^8.1.0",
     "superagent": "^5.2.2"
-  }
+  },
+  "keywords": [
+    "douban",
+    "douban-getter"
+  ],
 }
