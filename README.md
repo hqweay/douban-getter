@@ -13,7 +13,9 @@
 1. 引入包
 
    ```bash
-   yarn add https://github.com/hqweay/douban-getter.git
+   npm i douban-getter
+   yarn add douban-getter
+   # yarn add https://github.com/hqweay/douban-getter.git
    ```
 
 2. 使用样例
