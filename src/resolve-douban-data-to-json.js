@@ -31,17 +31,17 @@ function resolveMovies($, data) {
     let date = $element.find('.info .date').text();
     let tags = '';
 
-    let rate = "";
+    let rate = 0;
     if ($element.find('.info .rating1-t').length != 0) {
-      rate = "1";
+      rate = 1;
     } else if ($element.find('.info .rating2-t').length != 0) {
-      rate = "2";
+      rate = 2;
     } else if ($element.find('.info .rating3-t').length != 0) {
-      rate = "3";
+      rate = 3;
     } else if ($element.find('.info .rating4-t').length != 0) {
-      rate = "4";
+      rate = 4;
     } else if ($element.find('.info .rating5-t').length != 0) {
-      rate = "5";
+      rate = 5;
     }
 
     if ($element.find('.info .tags').length != 0) {
@@ -115,17 +115,17 @@ function resolveBooks($, data) {
       comment = $element.find('.info .comment').text();
     }
 
-    let rate = "";
+    let rate = 0;
     if ($element.find('.info .rating1-t').length != 0) {
-      rate = "1";
+      rate = 1;
     } else if ($element.find('.info .rating2-t').length != 0) {
-      rate = "2";
+      rate = 2;
     } else if ($element.find('.info .rating3-t').length != 0) {
-      rate = "3";
+      rate = 3;
     } else if ($element.find('.info .rating4-t').length != 0) {
-      rate = "4";
+      rate = 4;
     } else if ($element.find('.info .rating5-t').length != 0) {
-      rate = "5";
+      rate = 5;
     }
 
 
@@ -183,17 +183,17 @@ function resolveMusics($, data) {
       comment = $element.find('.info li').last().text();
     }
 
-    let rate = "";
+    let rate = 0;
     if ($element.find('.info .rating1-t').length != 0) {
-      rate = "1";
+      rate = 1;
     } else if ($element.find('.info .rating2-t').length != 0) {
-      rate = "2";
+      rate = 2;
     } else if ($element.find('.info .rating3-t').length != 0) {
-      rate = "3";
+      rate = 3;
     } else if ($element.find('.info .rating4-t').length != 0) {
-      rate = "4";
+      rate = 4;
     } else if ($element.find('.info .rating5-t').length != 0) {
-      rate = "5";
+      rate = 5;
     }
 
     item['title'] = title.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
@@ -247,17 +247,17 @@ function resolveGames($, data) {
     let comment = '';
     comment = $element.find('.content').children().eq(2).text();
 
-    let rate = "";
+    let rate = 0;
     if ($element.find('.content .rating-info .allstar10').length != 0) {
-      rate = "1";
+      rate = 1;
     } else if ($element.find('.content .rating-info .allstar20').length != 0) {
-      rate = "2";
+      rate = 2;
     } else if ($element.find('.content .rating-info .allstar30').length != 0) {
-      rate = "3";
+      rate = 3;
     } else if ($element.find('.content .rating-info .allstar40').length != 0) {
-      rate = "4";
+      rate = 4;
     } else if ($element.find('.content .rating-info .allstar50').length != 0) {
-      rate = "5";
+      rate = 5;
     }
 
     item['title'] = title.replace(/\s/g, '') // replace("\n", "").replace(" ", "")
