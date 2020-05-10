@@ -24,7 +24,7 @@ function createDoubanDataGetter(dataType) {
 
       console.log(dataType + ' 开始爬取...');
 
-      setInterval(function () {
+      let interval = setInterval(function () {
         page += 15;
         var cnodeUrl = getUrl(dataType, user, page);
         if (flag === false) {
@@ -70,8 +70,9 @@ function createDoubanDataGetter(dataType) {
           });// end superagent.end()
 
         if (flag === true || page >= pageEnd * 15 - 15) {
-          clearInterval(this);
-          console.log("正在请求，等待获取数据...");
+          //clearInterval(this);
+          clearInterval(interval);
+	  console.log("正在请求，等待获取数据...");
         }
 
       }, sleepTimer);// end setInterval
