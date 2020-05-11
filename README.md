@@ -1,4 +1,4 @@
-# 简要说明
+## 简要说明
 
 提供一个工厂方法，创建用户在豆瓣标记为电影、书籍、音乐、游戏对应的看过、在看、想看等条目的 Getter 方法。
 
@@ -8,20 +8,26 @@
 >
 > 如该页面：[下一餐有折耳根想看的电影](https://movie.douban.com/people/hqweay/wish?start=15&sort=time&rating=all&filter=all&mode=grid)
 
-# 使用
+## UPDATE
 
-## 效果
+[hqweay/MarkAll](https://github.com/hqweay/MarkAll) 提供 GUI：
+
+![](https://github.com/hqweay/MarkAll/blob/dev/examples/import-douban-data.png?raw=true)
+
+## 使用
+
+### 效果
 
 ![](https://raw.githubusercontent.com/hqweay/douban-getter/master/screenshots/example.gif)
 
-## 说明
+### 说明
 
 1. 引入包
 
    ```bash
-   npm i douban-getter
+   yarn add https://github.com/hqweay/douban-getter.git
+   # npm i douban-getter
    # yarn add douban-getter
-   # yarn add https://github.com/hqweay/douban-getter.git
    ```
 
 2. 使用样例
@@ -43,9 +49,9 @@
    })
    ```
 
-# 方法说明
+## 方法说明
 
-## createDoubanDataGetter
+### createDoubanDataGetter
 
 提供一个工厂方法，创建用户在豆瓣标记为电影、书籍、音乐、游戏对应的看过、在看、想看等条目的 Getter 方法。
 
@@ -69,7 +75,7 @@ const DoubanTypeEnum = {
 }
 ```
 
-### 参数对应
+#### 参数对应
 
 | 电影 | 书籍 | 音乐 | 游戏 |
 | ---- | ---- | ---- | ---- |
@@ -77,7 +83,7 @@ const DoubanTypeEnum = {
 | 想看 | 想读 | 想听 | 想玩 |
 | 在看 | 在读 | 在听 | 在玩 |
 
-## Getter
+### Getter
 
 createDoubanDataGetter 的返回值是一个豆瓣标记数据的 Getter 函数，里面是一个 Promise，通过回调方法可以对 Getter 获取的数据进行相应处理。如：
 
@@ -88,7 +94,7 @@ getDoubanWishMovies(userName, pageStart = 1, pageEnd = 2, sleepTimer = 1500).the
 })
 ```
 
-### 可选参数
+#### 可选参数
 
 ```javascript
 getDoubanWatchedMovies(userName, pageStart = 1, pageEnd = 2, sleepTimer = 1500);
@@ -101,7 +107,7 @@ getDoubanWatchedMovies(userName, pageStart = 1, pageEnd = 2, sleepTimer = 1500);
 | pageEnd    | 数据获取结束页                                               |
 | sleepTimer | 爬取数据的时间间隔（**不建议修改，过快会被限制访问...**）默认为 1500（ms） |
 
-## saveDoubanData
+### saveDoubanData
 
 saveDoubanData() 是这个项目核心外的一个方法，用于将 Getter 获取的数据保存至本地。
 
@@ -109,7 +115,7 @@ saveDoubanData() 是这个项目核心外的一个方法，用于将 Getter 获�
 saveDoubanData(data, STORE_PATH = "douban-data-backup", fileName = "my-info");
 ```
 
-### 参数说明
+#### 参数说明
 
 | 参数       | 说明       |
 | ---------- | ---------- |
@@ -117,11 +123,9 @@ saveDoubanData(data, STORE_PATH = "douban-data-backup", fileName = "my-info");
 | STORE_PATH | 存储路径   |
 | fileName   | 保存文件名 |
 
-# 项目说明
+## 项目说明
 
-把 [MarkAll](https://github.com/hqweay/MarkAll) 里的豆瓣爬虫抽取为插件...
-
-## 结构
+### 结构
 
 把获取豆瓣数据抽象为三步：获取页面、解析页面、数据存储。
 
@@ -145,15 +149,15 @@ let getDoubanWishMovies = createDoubanDataGetter("wishMovies");
 **注意**：现在文件夹下的 resolve 文件是 `resolve-douban-data-to-json.js`，表示获取信息后以 JSON 格式存储。
 同理，save 文件是 `save-douban-data-to-local.js`，表示存储至本地。
 
-## 豆瓣信息页面的 URL 
+### 豆瓣信息页面的 URL
 
 可参考目录下的 `src/config/douban-data-urls.md`。
 
-## 备份数据样例
+### 备份数据样例
 
 参考 `/douban-data-backup` 下的文件。
 
-# 开发
+## 开发
 
 您可以创建自己的 `save-douban-data-to-cloud.js` 等类似文件编写上传到存储服务的逻辑。
 
@@ -161,16 +165,18 @@ let getDoubanWishMovies = createDoubanDataGetter("wishMovies");
 
 也许我后面会写...
 
-# 其它
+## 其它
 
 另外，话说保存数据格式为 `JSON`，其它格式可以使用在线转换工具嘛...
 
 比如 JSON 转 CSV ：[https://www.bejson.com/json/json2excel/](https://www.bejson.com/json/json2excel/)
 
-# 一些问题
+### 一些问题
 
 豆瓣读过的书籍页面直接访问 403，但是先访问用户主页，再访问读过的书籍页面就没问题。对比两个页面的请求头发现相差一个 Cookie 字段，但是——我又没登录。看样子只要有该字段就没问题，服务器没做其它啥验证。
 
-# 关联
+### 关联
 
 [hexo-douban-getter](https://github.com/hqweay/hexo-douban-getter) ：基于本项目写的展示豆瓣标记条目的 Hexo 插件。
+
+[hqweay/MarkAll](https://github.com/hqweay/MarkAll) ：提供 GUI 导入豆瓣标记数据
