@@ -27,6 +27,8 @@ function resolveBook($, data) {
     'pic': content.find('#mainpic img').attr('src').trim(),
     'intro': content.find('#link-report .intro').text().trim(),
     'rate': content.find('.rating_num').text().trim(),
+    // 'pub': content.find('#info a').text().trim(),
+    // 'subTitle': content.find('#info a').text().trim(),
   });
   return data;
 }
