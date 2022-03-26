@@ -14,7 +14,7 @@ const DoubanTypeEnum = {
   "playingGames": "playingGames",
   "movie": "movie",
   "book": "book",
-  "music": "playinmusicgGames",
+  "music": "music",
   "app": "app",
 }
 
