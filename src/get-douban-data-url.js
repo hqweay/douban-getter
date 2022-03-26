@@ -71,4 +71,16 @@ function getUrl(dataType, user, page) {
   }
 }
 
-module.exports = getUrl;
+function getItemUrl(dataType, id) {
+  if (dataType === "movie") {
+    return 'https://movie.douban.com/subject/' + id
+  } else if (dataType === "book") {
+    return 'https://book.douban.com/subject/' + id
+  } else if (dataType === "music") {
+    return 'https://music.douban.com/subject/' + id
+  } else if (dataType === "app") {
+    return 'https://www.douban.com/app/25926105/' + id
+  }
+}
+
+module.exports = { getUrl, getItemUrl };

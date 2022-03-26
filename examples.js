@@ -1,5 +1,5 @@
 
-let createDoubanDataGetter = require('./src/douban-data-getter-func-creater');
+let { createDoubanDataGetter, getDoubanItemInfo } = require('./src/douban-data-getter-func-creater');
 let saveDoubanData = require('./src/save-douban-data-to-local');
 let DoubanTypeEnum = require('./src/config/doubanEnum');
 
@@ -26,10 +26,17 @@ let getDoubanWishGames = createDoubanDataGetter(DoubanTypeEnum.wishGames);
 let getDoubanPlayingGames = createDoubanDataGetter(DoubanTypeEnum.playingGames);
 
 
-getDoubanReadBooks(userName, pageStart = 1, pageEnd = 2, sleepTimer = 1500).then(function (data) {
-  // 数据、路径、文件名
-  saveDoubanData(data, STORE_PATH + "/hqweay/book/", "readBooks");
-})
+// getDoubanItemInfo(DoubanTypeEnum.movie, 6424756).then(data => {
+//   console.log(data);
+// });
+getDoubanItemInfo(DoubanTypeEnum.book, 35732399).then(data => {
+  console.log(data);
+});
+
+// getDoubanReadBooks(userName, pageStart = 1, pageEnd = 2, sleepTimer = 1500).then(function (data) {
+//   // 数据、路径、文件名
+//   saveDoubanData(data, STORE_PATH + "/hqweay/book/", "readBooks");
+// })
 
 // getDoubanWishMovies(userName, pageStart = 1, pageEnd = 1, sleepTimer = 1500).then(function (data) {
 

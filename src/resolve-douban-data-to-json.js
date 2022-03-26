@@ -7,9 +7,41 @@ function resolveDoubanData($, dataType, data) {
     return resolveMusics($, data);
   } else if (dataType === "playedGames" || dataType === "wishGames" || dataType === "playingGames") {
     return resolveGames($, data);
+  } else if (dataType === "movie") {
+    return resolveMovie($, data);
+  } else if (dataType === "book") {
+    return resolveBook($, data);
+  } else if (dataType === "music") {
+
+  } else if (dataType === "app") {
+
   }
 }
 
+function resolveBook($, data) {
+  let content = $('#content');
+
+  data.push({
+    'title': $('h1 span').text().trim(),
+    'url': content.find('#mainpic a').attr('href').trim(),
+    'pic': content.find('#mainpic img').attr('src').trim(),
+    'intro': content.find('#link-report .intro').text().trim(),
+    'rate': content.find('.rating_num').text().trim(),
+  });
+  return data;
+}
+function resolveMovie($, data) {
+  let content = $('#content');
+
+  data.push({
+    'title': content.find('h1 span').text().trim(),
+    'url': content.find('#mainpic a').attr('href').trim(),
+    'pic': content.find('#mainpic img').attr('src').trim(),
+    'intro': content.find('#link-report span').text().trim(),
+    'rate': content.find('.rating_num').text().trim(),
+  });
+  return data;
+}
 
 function resolveMovies($, data) {
   let items = $('.item');

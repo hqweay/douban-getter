@@ -3,11 +3,55 @@ const superagent = require('superagent');
 const cheerio = require('cheerio');
 // const url = require('url');
 
-const getUrl = require('./get-douban-data-url');
+const { getUrl, getItemUrl } = require('./get-douban-data-url');
 const resolveDoubanData = require('./resolve-douban-data-to-json');
 const userAgents = require('./config/userAgents')
 const cookies = require('./config/cookies')
 
+
+function getDoubanItemInfo(dataType, id) {
+
+  return new Promise(function (resolve, reject) {
+    let data = [];
+
+
+    console.log(dataType + ' 开始获取...');
+
+    var cnodeUrl = getItemUrl(dataType, id);
+
+    let userAgent = userAgents[parseInt(Math.random() * userAgents.length)];
+    let cookie = cookies[parseInt(Math.random() * cookies.length)];
+
+    superagent.get(cnodeUrl)
+      .set({
+        'User-Agent': userAgent,
+        'Cookie': cookie
+      }).timeout({
+        response: 10000
+      })
+      .end(function (err, res) {
+
+        if (err) {
+          if (err.timeout) {
+            console.log("请求超时，请检查网络：" + err);
+          } else {
+            console.log('请求页面信息出错： ' + err);
+          }
+        }
+        // console.log(res.text);
+        var $ = cheerio.load(res.text);
+        resolveDoubanData($, dataType, data)
+        data[0].url = cnodeUrl;// url 覆盖
+        resolve(data);
+      });// end superagent.end()
+
+    console.log('数据获取结束...');
+
+  });// end Promise
+
+
+
+}
 
 
 // dataType : 看过电影、在看影视、想看电影...
@@ -72,7 +116,7 @@ function createDoubanDataGetter(dataType) {
         if (flag === true || page >= pageEnd * 15 - 15) {
           //clearInterval(this);
           clearInterval(interval);
-	  console.log("正在请求，等待获取数据...");
+          console.log("正在请求，等待获取数据...");
         }
 
       }, sleepTimer);// end setInterval
@@ -86,4 +130,4 @@ function createDoubanDataGetter(dataType) {
 
 
 
-module.exports = createDoubanDataGetter;
+module.exports = { createDoubanDataGetter, getDoubanItemInfo };

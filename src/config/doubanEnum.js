@@ -12,6 +12,10 @@ const DoubanTypeEnum = {
   "playedGames": "playedGames",
   "wishGames": "wishGames",
   "playingGames": "playingGames",
+  "movie": "movie",
+  "book": "book",
+  "music": "playinmusicgGames",
+  "app": "app",
 }
 
 module.exports = DoubanTypeEnum;
